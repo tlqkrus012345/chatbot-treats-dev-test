@@ -7,7 +7,7 @@ on:
 
 env:
   S3_BUCKET_NAME: stchatbotbucket
-  RESOURCE_PATH: ./src/main/resources/application.yaml
+  RESOURCE_PATH: ./src/main/resources/application.properties
   CODE_DEPLOY_APPLICATION_NAME: stchatbot-code-deploy
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: stchatbot-deploy
 
@@ -29,9 +29,9 @@ jobs:
         uses: microsoft/variable-substitution@v1
         with:
           files: ${{ env.RESOURCE_PATH }} 
-        env:
+        # env:
           # override.value: ${{ secrets.DI_FROM_SECRET }} 
-          override.value: 'from deploy.yaml' 
+          # override.value: 'from deploy.yaml' 
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew

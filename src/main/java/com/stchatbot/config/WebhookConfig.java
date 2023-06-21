@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Component
 @Slf4j
@@ -18,8 +19,8 @@ import javax.annotation.PostConstruct;
 public class WebhookConfig {
 
     private final RestTemplate restTemplate;
-    @Value("${viber.token}")
-    private String token;
+
+    private String token = "512fc36a9467e3c8-83dc1ff986f69070-ecdb66a74e9c42c6";
     private String webhookUrl = "https://chatapi.viber.com/pa/set_webhook";
     private String payload = "{\"url\":\"https://stchatbot.site/webhook\"}";
     @PostConstruct
@@ -37,5 +38,15 @@ public class WebhookConfig {
         } else {
             log.info("Webhook Fail");
         }
+    }
+    @PreDestroy
+    public void unsetWebhook() {
+        String payload = "{\"url\":\"\"}";
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("X-Viber-Auth-Token", token);
+
+        HttpEntity<String> httpEntity = new HttpEntity<>(payload, httpHeaders);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
     }
 }

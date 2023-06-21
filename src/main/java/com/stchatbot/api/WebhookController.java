@@ -12,7 +12,6 @@ public class WebhookController {
         return "health check!!";
     }
     @PostMapping("/webhook")
-    public WebhookCallbackData webhook(@RequestBody WebhookCallbackData webhookCallbackData) {
-        return webhookCallbackData;
+    public void webhook() {
     }
 }

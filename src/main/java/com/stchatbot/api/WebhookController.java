@@ -2,6 +2,7 @@ package com.stchatbot.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -11,7 +12,7 @@ public class WebhookController {
         return "health check!!";
     }
     @PostMapping("/webhook")
-    public void webhook() {
-
+    public WebhookCallbackData webhook(@RequestBody WebhookCallbackData webhookCallbackData) {
+        return webhookCallbackData;
     }
 }

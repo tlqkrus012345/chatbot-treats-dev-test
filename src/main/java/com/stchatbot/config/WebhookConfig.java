@@ -19,7 +19,7 @@ public class WebhookConfig {
 
     private String token = "512fc36a9467e3c8-83dc1ff986f69070-ecdb66a74e9c42c6";
     private String url = "https://chatapi.viber.com/pa/set_webhook";
-    private String payload = "{\"url\":\"https://stchatbot.site/webhook\"}";
+    private String payload = "{\"url\":\"https://stchatbot.site/api\"}";
     @PostConstruct
     public void setWebhook() {
 

@@ -20,7 +20,7 @@ public class ServerApplication {
 	httpHeaders.set("X-Viber-Auth-Token", token);
 	HttpEntity<String> httpEntity = new HttpEntity<>(payload, httpHeaders);
 	ResponseEntity<String> responseEntity = restTemplate.exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
-
+//
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 			log.info("Webhook Success");

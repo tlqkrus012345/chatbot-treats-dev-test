@@ -18,10 +18,8 @@ public class WebhookController {
 
     }
     @PostMapping("/api")
-    public void webhook2(@RequestBody WebhookResponse webhookResponse, @RequestBody WebhookCallbackData webhookCallbackData) {
+    public void webhook2(@RequestBody WebhookCallbackData webhookCallbackData) {
         log.info("post");
-        log.info(String.valueOf(webhookResponse.getStatus()));
-        log.info(webhookResponse.getStatusMessage());
         log.info(webhookCallbackData.getEventType());
     }
 }

@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class WebhookController {
     @GetMapping("/health")
     public String health() {
-        return "health check!!";
+        return "health check";
     }
     @PostMapping("/api")
-    public void webhook2(@RequestBody WebhookCallbackData webhookCallbackData) {
+    public void webhook1(@RequestBody WebhookCallbackData webhookCallbackData) {
         log.info("post");
         log.info(webhookCallbackData.getEventType());
     }

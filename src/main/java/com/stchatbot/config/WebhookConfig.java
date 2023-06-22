@@ -32,5 +32,6 @@ public class WebhookConfig implements ApplicationRunner {
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity, String.class);
 
         log.info(responseEntity.getBody());
+        //
     }
 }

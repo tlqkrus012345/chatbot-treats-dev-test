@@ -15,23 +15,18 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.servlet.ServletContext;
 
-@Configuration
+@Component
 @Slf4j
 @RequiredArgsConstructor
-public class WebhookConfig implements WebMvcConfigurer {
+public class WebhookConfig implements ApplicationRunner {
 
     private final RestTemplate restTemplate;
 
     private String token = "512fc36a9467e3c8-83dc1ff986f69070-ecdb66a74e9c42c6";
     private String url = "https://chatapi.viber.com/pa/set_webhook";
     private String payload = "{\"url\":\"https://stchatbot.site/api\"}";
-
-    public void startUp(ServletContext servletContext) {
-        log.info("startup");
-        connectWebhook();
-    }
-    private void connectWebhook() {
-        log.info("connect");
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.set("X-Viber-Auth-Token", token);
@@ -39,7 +34,6 @@ public class WebhookConfig implements WebMvcConfigurer {
         HttpEntity<String> httpEntity = new HttpEntity<>(payload, httpHeaders);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity, String.class);
 
-        log.info("Webhook Response: {}", responseEntity.getBody());
-
+        log.info(responseEntity.getBody());
     }
 }

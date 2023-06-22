@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 public class WebhookController {
-    @GetMapping("/health")
-    public String health() {
-        return "health check!!";
-    }
+//    @GetMapping("/health")
+//    public String health() {
+//        return "health check!!";
+//    }
     @GetMapping("/api")
     public void webhook1() {
         log.info("get");

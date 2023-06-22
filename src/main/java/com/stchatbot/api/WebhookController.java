@@ -12,11 +12,6 @@ public class WebhookController {
     public String health() {
         return "health check!!";
     }
-    @GetMapping("/api")
-    public void webhook1() {
-        log.info("get");
-
-    }
     @PostMapping("/api")
     public void webhook2(@RequestBody WebhookCallbackData webhookCallbackData) {
         log.info("post");

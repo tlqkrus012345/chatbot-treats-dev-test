@@ -24,7 +24,7 @@ public class WebhookConfig implements ApplicationRunner {
 
     private String token = "512fc36a9467e3c8-83dc1ff986f69070-ecdb66a74e9c42c6";
     private String url = "https://chatapi.viber.com/pa/set_webhook";
-    private String payload = "{\"url\":\"https://stchatbot.site/api\"}";
+    private String payload = "{\"url\":\"https://stchatbot.site\"}";
     @Override
     public void run(ApplicationArguments args) throws Exception {
         HttpHeaders httpHeaders = new HttpHeaders();

@@ -1,5 +1,10 @@
-logging:
-  level:
-    org.springframework.web: DEBUG
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+#logging:
+#  level:
+#    org.springframework.web: DEBUG
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+#
+#viber:
+#  bot:
+#    webhookurl: https://chatapi.viber.com/pa/set_webhook
+#    token: 512fc36a9467e3c8-83dc1ff986f69070-ecdb66a74e9c42c6

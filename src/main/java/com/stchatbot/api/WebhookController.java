@@ -1,6 +1,7 @@
 package com.stchatbot.api;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,9 +13,10 @@ public class WebhookController {
     public String health() {
         return "health check";
     }
-    @PostMapping("/api")
+    @PostMapping("/")
     public void webhook1(@RequestBody WebhookCallbackData webhookCallbackData) {
         log.info("post");
         log.info(webhookCallbackData.getEventType());
+
     }
 }

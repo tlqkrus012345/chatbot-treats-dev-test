@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-//@Component
+@Component
 public class WebhookConfigV2 {
     private String token = "512fc36a9467e3c8-83dc1ff986f69070-ecdb66a74e9c42c6";
     private String webhookUrl = "https://chatapi.viber.com/pa/set_webhook";

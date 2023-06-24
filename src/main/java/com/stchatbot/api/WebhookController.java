@@ -17,6 +17,5 @@ public class WebhookController {
     public void webhook1(@RequestBody WebhookCallbackData webhookCallbackData) {
         log.info("post");
         log.info(webhookCallbackData.getEventType());
-
     }
 }

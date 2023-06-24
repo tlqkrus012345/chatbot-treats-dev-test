@@ -43,7 +43,7 @@ public class WebhookConfigV2 {
 
     private Map<String, Object> createWebHookParams() {
         return Map.of(
-                "url", payload1,
+                "url", payload,
                 "send_name", true,
                 "send_photo", true,
                 "event_types", getEvents()

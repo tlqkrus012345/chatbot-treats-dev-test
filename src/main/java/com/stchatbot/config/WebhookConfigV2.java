@@ -19,7 +19,7 @@ import java.util.Map;
 @Slf4j
 @Component
 public class WebhookConfigV2 {
-    private String token = "512fc36a9467e3c8-83dc1ff986f69070-ecdb66a74e9c42c6";
+    private String token = "513b21592f67e244-924f73242a636229-b8f631acb00784c";
     private String webhookUrl = "https://chatapi.viber.com/pa/set_webhook";
     private String payload = "https://stchatbot.site";
     private String payload1 = "https://4f68-1-227-43-68.ngrok-free.app";

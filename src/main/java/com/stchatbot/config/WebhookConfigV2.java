@@ -39,6 +39,7 @@ public class WebhookConfigV2 {
         ResponseEntity<String> response = restTemplate.exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
 
         log.info("Viber Webhook status {}, body {}", response.getStatusCode(), response.getBody());
+        //
     }
 
     private Map<String, Object> createWebHookParams() {

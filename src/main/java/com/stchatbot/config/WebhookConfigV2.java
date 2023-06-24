@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@Component
+//@Component
 public class WebhookConfigV2 {
     private String token = "512fc36a9467e3c8-83dc1ff986f69070-ecdb66a74e9c42c6";
     private String webhookUrl = "https://chatapi.viber.com/pa/set_webhook";
@@ -42,7 +43,7 @@ public class WebhookConfigV2 {
 
     private Map<String, Object> createWebHookParams() {
         return Map.of(
-                "url", payload,
+                "url", payload1,
                 "send_name", true,
                 "send_photo", true,
                 "event_types", getEvents()

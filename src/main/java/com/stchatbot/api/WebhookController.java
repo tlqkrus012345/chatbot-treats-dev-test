@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WebhookController {
     @GetMapping("/health")
-    public String health() {
-        return "health check";
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("health check");
     }
     @PostMapping("/")
     public void webhook1(@RequestBody WebhookCallbackData webhookCallbackData) {

@@ -35,7 +35,7 @@ public class WebhookConfigV2 {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("X-Viber-Auth-Token", token);
         HttpEntity<String> httpEntity = new HttpEntity<>(body, httpHeaders);
-
+//
         ResponseEntity<String> response = restTemplate.exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
 
         log.info("Viber Webhook status {}, body {}", response.getStatusCode(), response.getBody());

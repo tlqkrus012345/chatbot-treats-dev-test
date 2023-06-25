@@ -45,10 +45,6 @@ public class WebhookConfigV3 implements ServletContextInitializer {
 //        registration.setInitParameter("dispatchOptionsRequest", "true"); // OPTIONS 요청 허용
 //        registration.addMapping("/");
 
-        sendWebhookRequest();
-    }
-
-    private void sendWebhookRequest() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String body = objectMapper.writeValueAsString(createWebHookParams());
 
@@ -59,6 +55,8 @@ public class WebhookConfigV3 implements ServletContextInitializer {
         ResponseEntity<String> response = restTemplateConfig.restTemplate().exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
         log.info("webhook : {}", response.getBody());
     }
+
+
 
     private Map<String, Object> createWebHookParams() {
         return Map.of(

@@ -15,7 +15,7 @@ public class WebhookController {
     public String health() {
         return "health check";
     }
-    @PostMapping("/")
+    @PostMapping("/api")
     public void webhook1(@RequestBody String callback) {
         log.info("post");
         JSONObject jsonObject = new JSONObject(callback);

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WebhookController {
     @GetMapping("/health")
-    public void health() {}
+    public String health() {
+        return "health check";
+    }
     @PostMapping("/")
     public void webhook1(@RequestBody String callback) {
         JSONObject jsonObject = new JSONObject(callback);

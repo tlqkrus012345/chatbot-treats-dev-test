@@ -32,14 +32,15 @@ public class WebhookConfigV2 {
     @EventListener(ApplicationReadyEvent.class)
     public void setwebhook(ApplicationReadyEvent event) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
+        RestTemplate restTemplate = new RestTemplate();
         String body = objectMapper.writeValueAsString(createWebHookParams());
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("X-Viber-Auth-Token", token);
         HttpEntity<String> httpEntity = new HttpEntity<>(body, httpHeaders);
 
-        ResponseEntity<String> response = restTemplateConfig.restTemplate().exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
-
+        ResponseEntity<String> response1 = restTemplateConfig.restTemplate().exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
+        ResponseEntity<String> response = restTemplate.exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
         log.info("Viber Webhook status {}, body {}", response.getStatusCode(), response.getBody());
 
     }

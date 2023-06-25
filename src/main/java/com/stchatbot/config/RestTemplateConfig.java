@@ -28,6 +28,11 @@ public class RestTemplateConfig {
 //    }
     @Bean
     public RestTemplate restTemplate() {
+        return new RestTemplateBuilder().build();
+    }
+
+    //@Bean
+    public RestTemplate restTemplate1() {
         return new RestTemplateBuilder()
                 .setConnectTimeout(Duration.ofSeconds(5))
                 .setReadTimeout(Duration.ofSeconds(5))

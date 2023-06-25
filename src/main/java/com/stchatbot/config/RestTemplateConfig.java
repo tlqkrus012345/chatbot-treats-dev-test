@@ -31,30 +31,30 @@ public class RestTemplateConfig {
 //                .setConnectionManager(connectionManager)
 //                .build();
 //    }
-//    @Bean
-//    public RestTemplate restTemplate() {
-//        return new RestTemplateBuilder().build();
-//    }
-
     @Bean
     public RestTemplate restTemplate() {
-        return new RestTemplateBuilder()
-                .setConnectTimeout(Duration.ofSeconds(5))
-                .setReadTimeout(Duration.ofSeconds(5))
-                .additionalInterceptors(clientHttpRequestInterceptor())
-                .build();
+        return new RestTemplateBuilder().build();
     }
-    public ClientHttpRequestInterceptor clientHttpRequestInterceptor() {
-        return ((request, body, execution) -> {
-            RetryTemplate retryTemplate = new RetryTemplate();
-            retryTemplate.setRetryPolicy(new SimpleRetryPolicy(3));
-            try {
-                return retryTemplate.execute(context -> execution.execute(request, body));
-            } catch (Throwable throwable) {
-                throw new RuntimeException(throwable);
-            }
-        });
-    }
+
+//    @Bean
+//    public RestTemplate restTemplate() {
+//        return new RestTemplateBuilder()
+//                .setConnectTimeout(Duration.ofSeconds(5))
+//                .setReadTimeout(Duration.ofSeconds(5))
+//                .additionalInterceptors(clientHttpRequestInterceptor())
+//                .build();
+//    }
+//    public ClientHttpRequestInterceptor clientHttpRequestInterceptor() {
+//        return ((request, body, execution) -> {
+//            RetryTemplate retryTemplate = new RetryTemplate();
+//            retryTemplate.setRetryPolicy(new SimpleRetryPolicy(3));
+//            try {
+//                return retryTemplate.execute(context -> execution.execute(request, body));
+//            } catch (Throwable throwable) {
+//                throw new RuntimeException(throwable);
+//            }
+//        });
+//    }
 //    @Slf4j
 //    static class LoggingInterceptor implements ClientHttpRequestInterceptor {
 //

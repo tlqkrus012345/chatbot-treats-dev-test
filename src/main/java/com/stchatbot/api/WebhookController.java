@@ -17,6 +17,7 @@ public class WebhookController {
     }
     @PostMapping("/")
     public void webhook1(@RequestBody String callback) {
+        log.info("post");
         JSONObject jsonObject = new JSONObject(callback);
         String eventType = jsonObject.getString("event");
         if (eventType.equals("conversation_started")) {

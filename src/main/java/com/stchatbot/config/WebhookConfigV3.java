@@ -1,0 +1,53 @@
+package com.stchatbot.config;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import java.util.List;
+import java.util.Map;
+
+@Component
+@Slf4j
+@RequiredArgsConstructor
+public class WebhookConfigV3 implements ServletContextInitializer {
+
+    private final RestTemplateConfig restTemplateConfig;
+    private String token = "513b21592f67e244-924f73242a636229-b8f631acb00784c";
+    private String webhookUrl = "https://chatapi.viber.com/pa/set_webhook";
+    private String payload = "https://stchatbot.site";
+
+    @SneakyThrows
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String body = objectMapper.writeValueAsString(createWebHookParams());
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("X-Viber-Auth-Token", token);
+        HttpEntity<String> httpEntity = new HttpEntity<>(body, httpHeaders);
+
+        ResponseEntity<String> response = restTemplateConfig.restTemplate().exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
+        log.info("webhook : {}", response.getBody());
+    }
+    private Map<String, Object> createWebHookParams() {
+        return Map.of(
+                "url", payload,
+                "send_name", true,
+                "send_photo", true,
+                "event_types", getEvents()
+        );
+    }
+    private List<String> getEvents() {
+        return List.of("delivered", "seen", "failed", "subscribed", "unsubscribed", "conversation_started", "message");
+    }
+}

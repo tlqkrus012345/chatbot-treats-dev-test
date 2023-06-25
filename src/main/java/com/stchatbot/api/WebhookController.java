@@ -28,7 +28,7 @@ public class WebhookController {
         }
 
     }
-    ///@GetMapping("/")
+    ////@GetMapping("/")
     public void webhook2(@RequestBody WebhookCallbackData webhookCallbackData) {
         log.info("get");
         log.info(webhookCallbackData.getEventType());

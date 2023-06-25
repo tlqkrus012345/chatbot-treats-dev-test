@@ -24,3 +24,14 @@ logging:
 #      static: ap-northeast-2
 #    stack:
 #      auto: false
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        same-site: None
+        secure: true
+      context-path: /
+      encoding:
+        charset: UTF-8
+        force-response: true

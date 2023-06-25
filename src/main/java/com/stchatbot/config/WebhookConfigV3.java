@@ -21,53 +21,53 @@ import javax.servlet.ServletRegistration;
 import java.util.List;
 import java.util.Map;
 
-@Component
-@Slf4j
-@RequiredArgsConstructor
-public class WebhookConfigV3 implements ServletContextInitializer {
-
-    private final RestTemplateConfig restTemplateConfig;
-    private String token = "513b21592f67e244-924f73242a636229-b8f631acb00784c";
-    private String webhookUrl = "https://chatapi.viber.com/pa/set_webhook";
-    private String payload = "https://stchatbot.site";
-
-    @SneakyThrows
-    @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(WebConfig.class);
-        DispatcherServlet dispatcherServlet = new DispatcherServlet(context);
-        ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcherServlet", dispatcherServlet);
-        registration.setLoadOnStartup(1);
-        registration.addMapping("/");
-
-
-//        registration.setInitParameter("dispatchOptionsRequest", "true"); // OPTIONS 요청 허용
+//@Component
+//@Slf4j
+//@RequiredArgsConstructor
+//public class WebhookConfigV3 implements ServletContextInitializer {
+//
+//    private final RestTemplateConfig restTemplateConfig;
+//    private String token = "513b21592f67e244-924f73242a636229-b8f631acb00784c";
+//    private String webhookUrl = "https://chatapi.viber.com/pa/set_webhook";
+//    private String payload = "https://stchatbot.site";
+//
+//    @SneakyThrows
+//    @Override
+//    public void onStartup(ServletContext servletContext) throws ServletException {
+//        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+//        context.register(WebConfig.class);
+//        DispatcherServlet dispatcherServlet = new DispatcherServlet(context);
+//        ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcherServlet", dispatcherServlet);
+//        registration.setLoadOnStartup(1);
 //        registration.addMapping("/");
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        String body = objectMapper.writeValueAsString(createWebHookParams());
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("X-Viber-Auth-Token", token);
-        HttpEntity<String> httpEntity = new HttpEntity<>(body, httpHeaders);
-
-        ResponseEntity<String> response = restTemplateConfig.restTemplate().exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
-        log.info("webhook : {}", response.getBody());
-    }
-
-
-
-    private Map<String, Object> createWebHookParams() {
-        return Map.of(
-                "url", payload,
-                "send_name", true,
-                "send_photo", true,
-                "event_types", getEvents()
-        );
-    }
-
-    private List<String> getEvents() {
-        return List.of("delivered", "seen", "failed", "subscribed", "unsubscribed", "conversation_started", "message");
-    }
-}
+//
+//
+////        registration.setInitParameter("dispatchOptionsRequest", "true");
+////        registration.addMapping("/");
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String body = objectMapper.writeValueAsString(createWebHookParams());
+//
+//        HttpHeaders httpHeaders = new HttpHeaders();
+//        httpHeaders.set("X-Viber-Auth-Token", token);
+//        HttpEntity<String> httpEntity = new HttpEntity<>(body, httpHeaders);
+//
+//        ResponseEntity<String> response = restTemplateConfig.restTemplate().exchange(webhookUrl, HttpMethod.POST, httpEntity, String.class);
+//        log.info("webhook : {}", response.getBody());
+//    }
+//
+//
+//
+//    private Map<String, Object> createWebHookParams() {
+//        return Map.of(
+//                "url", payload,
+//                "send_name", true,
+//                "send_photo", true,
+//                "event_types", getEvents()
+//        );
+//    }
+//
+//    private List<String> getEvents() {
+//        return List.of("delivered", "seen", "failed", "subscribed", "unsubscribed", "conversation_started", "message");
+//    }
+//}

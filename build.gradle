@@ -26,9 +26,13 @@ repositories {
 }
 
 dependencies {
+	//implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'org.json:json:20220924'
 
-//	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
 	implementation 'org.springframework.retry:spring-retry:1.2.5.RELEASE'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

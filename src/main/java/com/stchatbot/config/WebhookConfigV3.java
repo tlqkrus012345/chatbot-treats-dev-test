@@ -10,16 +10,20 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 import java.util.List;
 import java.util.Map;
 
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class WebhookConfigV3 implements ServletContextInitializer {
+public class WebhookConfigV3 implements WebApplicationInitializer {
 
     private final RestTemplateConfig restTemplateConfig;
     private String token = "513b21592f67e244-924f73242a636229-b8f631acb00784c";
@@ -29,6 +33,17 @@ public class WebhookConfigV3 implements ServletContextInitializer {
     @SneakyThrows
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
+
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        context.register(WebConfig.class);
+
+        DispatcherServlet dispatcherServlet = new DispatcherServlet(context);
+        ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcherServlet", dispatcherServlet);
+        registration.setLoadOnStartup(1);
+        registration.addMapping("/");
+
+
+
         ObjectMapper objectMapper = new ObjectMapper();
         String body = objectMapper.writeValueAsString(createWebHookParams());
 

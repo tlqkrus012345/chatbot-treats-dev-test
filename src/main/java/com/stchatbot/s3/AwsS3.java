@@ -1,4 +1,4 @@
-package com.stchatbot.api;
+package com.stchatbot.s3;
 
 import lombok.Builder;
 import lombok.Getter;

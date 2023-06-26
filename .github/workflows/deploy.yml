@@ -30,8 +30,8 @@ jobs:
         with:
         files: ${{ env.RESOURCE_PATH }}
         env:
-           aws.s3.credentials.access-key: ${{ secrets.AWS_ACCESS_KEY_ID}}
-           aws.s3.credentials.secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+           cloud.aws.s3.credentials.access-key: ${{ secrets.AWS_ACCESS_KEY_ID}}
+           cloud.aws.s3.credentials.secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
       
       
       - name: Grant execute permission for gradlew

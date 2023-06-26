@@ -29,8 +29,7 @@ jobs:
         env:
            cloud.aws.s3.credentials.access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
            cloud.aws.s3.credentials.secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        runs-on: ubuntu-latest
-      
+
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
         shell: bash

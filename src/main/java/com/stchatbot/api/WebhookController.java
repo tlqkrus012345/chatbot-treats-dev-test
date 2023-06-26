@@ -15,9 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class WebhookController {
     private final WebhookConfigV2 webhook;
+    private boolean webhookSet = false;
     @GetMapping("/")
     public String health() {
-        webhook.setwebhook();
+
+        if (!webhookSet) {
+            webhook.setwebhook();
+            webhookSet = true;
+        }
         return "health check";
     }
     @PostMapping("/")
@@ -33,10 +38,4 @@ public class WebhookController {
         }
 
     }
-    ////@GetMapping("/")
-    public void webhook2(@RequestBody WebhookCallbackData webhookCallbackData) {
-        log.info("get");
-        log.info(webhookCallbackData.getEventType());
-    }
-
 }

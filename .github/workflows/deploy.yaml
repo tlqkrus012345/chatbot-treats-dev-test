@@ -29,8 +29,7 @@ jobs:
           cp ./src/main/resources/application.yaml ./src/main/resources/application_temp.yaml
           cat ./src/main/resources/application-local.yaml >> ./src/main/resources/application_temp.yaml
           cat ./src/main/resources/application-common.yaml >> ./src/main/resources/application_temp.yaml
-          cat ./src/main/resources/application-prod.yaml >> ./src/main/resources/application_temp.yaml
-          mv ./src/main/resources/application_temp.yaml ./src/main/resources/application.yaml 
+          mv ./src/main/resources/application_temp.yaml ./src/main/resources/application.yml 
 
 #      - name: Set yaml file
 #        run: envsubst < ./src/main/resources/application.yaml > ./src/main/resources/application.yml

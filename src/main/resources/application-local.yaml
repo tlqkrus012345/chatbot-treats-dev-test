@@ -1,0 +1,20 @@
+spring:
+  config:
+    active:
+      on-profiles: local
+
+
+cloud:
+  aws:
+    s3:
+      bucket: stchatbotimagebucket
+    credentials:
+      access-key: ${AWS_ACCESS_KEY_ID}
+      secret-key: ${AWS_SECRET_ACCESS_KEY}
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+brand-path: "brand"
+product-path: "product"
+

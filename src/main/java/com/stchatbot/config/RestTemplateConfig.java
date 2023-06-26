@@ -35,7 +35,7 @@ public class RestTemplateConfig {
 //    public RestTemplate restTemplate() {
 //        return new RestTemplateBuilder().build();
 //    }
-
+//
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplateBuilder()

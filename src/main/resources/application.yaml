@@ -1,51 +1,13 @@
-logging:
-  level:
-    org.springframework.web: DEBUG
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+spring :
+  profiles:
+    active: local
+    group:
+      local:
+        - common
+      test:
+        - common
+      prod:
+        - common
 
-#viber:
-#  bot:
-#    webhookurl: https://chatapi.viber.com/pa/set_webhook
-#    token: 512fc36a9467e3c8-83dc1ff986f69070-ecdb66a74e9c42c6
-#spring:
-#  servlet:
-#    multipart:
-#      max-request-size: 10MB
-#      max-file-size: 10MB
-#
-#aws:
-#  s3:
-#    credentials:
-#      access-key: ${AWS_ACCESS_KEY_ID}
-#      secret-key: ${AWS_SECRET_ACCESS_KEY}
-#    bucket: stchatbotimagebucket
-#    region:
-#      static: ap-northeast-2
-#    stack:
-#      auto: false
-cloud:
-  aws:
-    s3:
-      bucket: stchatbotimagebucket
-    credentials:
-      access-key: ${AWS_ACCESS_KEY_ID}
-      secret-key: ${AWS_SECRET_ACCESS_KEY}
-    region:
-      static: ap-northeast-2
-    stack:
-      auto: false
-brand-path: "brand"
-product-path: "product"
 
-server:
-  port: 8080
-  servlet:
-    session:
-      cookie:
-        same-site: None
-        secure: true
-      context-path: /
-      encoding:
-        charset: UTF-8
-        force-response: true
+

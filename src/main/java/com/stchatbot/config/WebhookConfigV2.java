@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
@@ -23,6 +24,7 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class WebhookConfigV2 {
+
     private String token = "513b21592f67e244-924f73242a636229-b8f631acb00784c";
     private String webhookUrl = "https://chatapi.viber.com/pa/set_webhook";
     private String payload = "https://stchatbot.site";

@@ -3,6 +3,7 @@ package com.stchatbot.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -29,8 +30,10 @@ public class WebhookConfigV2 {
     String body1 = "{\"url\":\"https://552a-1-227-43-68.ngrok-free.app/api\",\"event_type\":[\"delivered\"]|}";
 
     private final RestTemplateConfig restTemplateConfig;
-    @EventListener(ApplicationReadyEvent.class)
-    public void setwebhook(ApplicationReadyEvent event) throws JsonProcessingException {
+    //@EventListener(ApplicationReadyEvent.class)
+    //ApplicationReadyEvent event
+    @SneakyThrows
+    public void setwebhook()  {
         ObjectMapper objectMapper = new ObjectMapper();
         String body = objectMapper.writeValueAsString(createWebHookParams());
 

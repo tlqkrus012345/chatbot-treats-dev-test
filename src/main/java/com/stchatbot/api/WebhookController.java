@@ -1,5 +1,7 @@
 package com.stchatbot.api;
 
+import com.stchatbot.config.WebhookConfigV2;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class WebhookController {
+    private final WebhookConfigV2 webhook;
     @GetMapping("/")
     public String health() {
+        webhook.setwebhook();
         return "health check";
     }
     @PostMapping("/")
@@ -33,4 +38,5 @@ public class WebhookController {
         log.info("get");
         log.info(webhookCallbackData.getEventType());
     }
+
 }

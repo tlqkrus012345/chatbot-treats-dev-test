@@ -26,10 +26,17 @@ jobs:
 
       - name: Set yaml file
         run: |
-            cp ./src/main/resources/application.yaml ./src/main/resources/application_temp.yaml
-            cat ./src/main/resources/application-local.yaml >> ./src/main/resources/application_temp.yaml
-            mv ./src/main/resources/application_temp.yaml ./src/main/resources/application.yml
-            cat ./src/main/resources/application-common.yaml >> ./src/main/resources/application.yml  
+          # application.yaml
+          cp ./src/main/resources/application.yaml ./src/main/resources/application_temp.yaml
+          
+          # application-local.yaml
+          cat ./src/main/resources/application-local.yaml >> ./src/main/resources/application_temp.yaml
+          
+          # application-common.yaml
+          cat ./src/main/resources/application-common.yaml >> ./src/main/resources/application_temp.yaml
+          
+          # Move the temporary file to overwrite the original application.yaml
+          mv ./src/main/resources/application_temp.yaml ./src/main/resources/application.yaml  
 
 #      - name: Set yaml file
 #        run: envsubst < ./src/main/resources/application.yaml > ./src/main/resources/application.yml

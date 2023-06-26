@@ -23,10 +23,16 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-        
 
       - name: Set yaml file
-        run: envsubst < ./src/main/resources/application.yaml > ./src/main/resources/application.yml
+        run: |
+            cp ./src/main/resources/application.yaml ./src/main/resources/application_temp.yaml
+            cat ./src/main/resources/application-local.yaml >> ./src/main/resources/application_temp.yaml
+            mv ./src/main/resources/application_temp.yaml ./src/main/resources/application.yml
+            cat ./src/main/resources/application-common.yaml >> ./src/main/resources/application.yml  
+
+#      - name: Set yaml file
+#        run: envsubst < ./src/main/resources/application.yaml > ./src/main/resources/application.yml
 #        uses: microsoft/variable-substitution@v1
 #        with:
 #          files: ${{ env.RESOURCE_PATH }}

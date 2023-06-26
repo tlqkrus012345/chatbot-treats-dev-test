@@ -35,6 +35,8 @@ cloud:
       static: ap-northeast-2
     stack:
       auto: false
+brand-path: "brand"
+product-path: "product"
 
 server:
   port: 8080

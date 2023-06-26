@@ -24,6 +24,18 @@ logging:
 #      static: ap-northeast-2
 #    stack:
 #      auto: false
+cloud:
+  aws:
+    s3:
+      bucket: stchatbotimagebucket
+    credentials:
+      access-key: ${AWS_ACCESS_KEY_ID}
+      secret-key: ${AWS_SECRET_ACCESS_KEY}
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+
 server:
   port: 8080
   servlet:

@@ -17,13 +17,12 @@ public class WebhookController {
     private final WebhookConfigV2 webhook;
     private boolean webhookSet = false;
     @GetMapping("/")
-    public String health() {
+    public void health() {
 
         if (!webhookSet) {
             webhook.setwebhook();
             webhookSet = true;
         }
-        return "health check";
     }
     @PostMapping("/")
     public void webhook1(@RequestBody String callback) {

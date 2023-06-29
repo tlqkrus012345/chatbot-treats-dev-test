@@ -10,15 +10,15 @@ server:
         charset: UTF-8
         force-response: true
 #
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: ${RDS_URL}
-#    username: ${RDS_USERNAME}
-#    password: ${RDS_PASSWORD}
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://sharetreats-database.cxyn6whvc7o6.ap-northeast-2.rds.amazonaws.com:3306/st
+    username: ${RDS_USERNAME}
+    password: ${RDS_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 #cloud:
 #  aws:

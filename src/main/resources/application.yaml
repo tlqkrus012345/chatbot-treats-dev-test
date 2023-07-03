@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: ${SPRING_PORT}
   servlet:
     session:
       cookie:
@@ -10,27 +10,31 @@ server:
         charset: UTF-8
         force-response: true
 #
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://sharetreats-database.cxyn6whvc7o6.ap-northeast-2.rds.amazonaws.com:3306/st
+#    username: ${RDS_USERNAME}
+#    password: ${RDS_PASSWORD}
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://sharetreats-database.cxyn6whvc7o6.ap-northeast-2.rds.amazonaws.com:3306/st
-    username: ${RDS_USERNAME}
-    password: ${RDS_PASSWORD}
-  jpa:
-    hibernate:
-      ddl-auto: update
-
-#cloud:
-#  aws:
-#    s3:
-#      bucket: stchatbotimagebucket
-#    credentials:
-#      access-key: ${AWS_ACCESS_KEY_ID}
-#      secret-key: ${AWS_SECRET_ACCESS_KEY}
-#    region:
-#      static: ap-northeast-2
-#    stack:
-#      auto: false
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+cloud:
+  aws:
+    s3:
+      bucket: stchatbotimagebucket
+    credentials:
+      accesskey: AKIAU7PORYUTRMIUE7XU
+      secretkey: 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
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
 #
 #brand-path: "brand"
 #product-path: "product"

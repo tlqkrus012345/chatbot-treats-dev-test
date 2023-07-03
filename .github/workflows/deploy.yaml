@@ -43,8 +43,12 @@ jobs:
         env:
           spring.datasource.username: ${{ secrets.RDS_USERNAME}}
           spring.datasource.password: ${{ secrets.RDS_PASSWORD}}
+          spring.port: ${{ secrets.SPRING_PORT}}
 #           cloud.aws.s3.credentials.access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
 #           cloud.aws.s3.credentials.secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name : String to Integer
+        run: echo "::set-en name=SPRING_PORT_INT::$(parseInt('${{ secrets.SPRING_PORT }}'))"
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew

@@ -2,8 +2,24 @@ spring:
   config:
     active:
       on-profiles: local
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${RDS_URL}
+    username: ${RDS_USERNAME}
+    password: ${RDS_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
 
-
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        orm:
+          jpa: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
 cloud:
   aws:
     s3:

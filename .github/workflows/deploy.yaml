@@ -24,19 +24,8 @@ jobs:
         with:
           java-version: 11
 
-      #- name: Set yaml file
-#        run: |
-#          cp ./src/main/resources/application.yaml ./src/main/resources/application_temp.yaml
-#          echo "---" >> ./src/main/resources/application_temp.yaml
-#          cat ./src/main/resources/application-local.yaml >> ./src/main/resources/application_temp.yaml
-#          echo "---" >> ./src/main/resources/application_temp.yaml
-#          cat ./src/main/resources/application-common.yaml >> ./src/main/resources/application_temp.yaml
-#          mv ./src/main/resources/application_temp.yaml ./src/main/resources/application.yml
-#          envsubst < ./src/main/resources/application.yml > ./src/main/resources/application_temp.yaml
-#          mv ./src/main/resources/application_temp.yaml ./src/main/resources/application.yml
 
       - name: Set yaml file
-#        run: envsubst < ./src/main/resources/application.yaml > ./src/main/resources/application.yml
         uses: microsoft/variable-substitution@v1
         with:
           files: ${{ env.RESOURCE_PATH }}
@@ -44,11 +33,6 @@ jobs:
           spring.datasource.username: ${{ secrets.RDS_USERNAME}}
           spring.datasource.password: ${{ secrets.RDS_PASSWORD}}
           spring.port: ${{ secrets.SPRING_PORT}}
-#           cloud.aws.s3.credentials.access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           cloud.aws.s3.credentials.secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name : String to Integer
-        run: echo "::set-en name=SPRING_PORT_INT::$(parseInt('${{ secrets.SPRING_PORT }}'))"
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
@@ -59,7 +43,6 @@ jobs:
         run: ./gradlew clean build -x test
         shell: bash
 
-        
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .
         shell: bash
@@ -84,3 +67,4 @@ jobs:
           --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
           --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
           --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
+

@@ -1,4 +1,4 @@
-package com.stchatbot.api;
+package com.stchatbot.api.welcomeDtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

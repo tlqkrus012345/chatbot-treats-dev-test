@@ -1,5 +1,5 @@
 server:
-  port: ${SPRING_PORT}
+  port: 8080
   servlet:
     session:
       cookie:
@@ -19,32 +19,32 @@ server:
 #  jpa:
 #    hibernate:
 #      ddl-auto: update
-spring:
-  servlet:
-    multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
-cloud:
-  aws:
-    s3:
-      bucket: stchatbotimagebucket
-    credentials:
-      accesskey: AKIAU7PORYUTRMIUE7XU
-      secretkey: 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
-    region:
-      static: ap-northeast-2
-    stack:
-      auto: false
+#spring:
+#  servlet:
+#    multipart:
+#      max-file-size: 100MB
+#      max-request-size: 100MB
+#cloud:
+#  aws:
+#    s3:
+#      bucket: stchatbotimagebucket
+#    credentials:
+#      accesskey: AKIAU7PORYUTRMIUE7XU
+#      secretkey: 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
+#    region:
+#      static: ap-northeast-2
+#    stack:
+#      auto: false
 #
 #brand-path: "brand"
 #product-path: "product"
 
-logging:
-  level:
-    org:
-      springframework:
-        web: DEBUG
-        orm:
-          jpa: DEBUG
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web: DEBUG
+#        orm:
+#          jpa: DEBUG
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

@@ -1,0 +1,81 @@
+version: "3"
+services:
+  st-app:
+    build: .
+    depends_on:
+      - redis-cluster-entry
+    ports:
+      - "8080:8080"
+    restart: always
+
+  redis-cluster-8000:
+    image: redis
+    network_mode: "host"
+    command:
+      - redis-server /etc/redis1.conf
+    volumes:
+      - ./redis/conf/redis1.conf:/etc/redis1.conf
+    ports:
+      - "8000:8000"
+
+  redis-cluster-8001:
+    image: redis
+    network_mode: "host"
+    command:
+      - redis-server /etc/redis2.conf
+    volumes:
+      - ./redis/conf/redis2.conf:/etc/redis2.conf
+    ports:
+      - "8001:8001"
+
+  redis-cluster-8002:
+    image: redis
+    network_mode: "host"
+    command:
+      - redis-server /etc/redis3.conf
+    volumes:
+      - ./redis/conf/redis3.conf:/etc/redis3.conf
+    ports:
+      - "8002:8002"
+
+  redis-cluster-8003:
+     image: redis
+     network_mode: "host"
+     command:
+       - redis-server /etc/redis4.conf
+     volumes:
+       - ./redis/conf/redis4.conf:/etc/redis4.conf
+     ports:
+       - "8003:8003"
+
+  redis-cluster-8004:
+    image: redis
+    network_mode: "host"
+    command:
+      - redis-server /etc/redis5.conf
+    volumes:
+      - ./redis/conf/redis5.conf:/etc/redis5.conf
+    ports:
+      - "8004:8004"
+
+  redis-cluster-8005:
+    image: redis
+    network_mode: "host"
+    command:
+      - redis-server /etc/redis6.conf
+    volumes:
+      - ./redis/conf/redis6.conf:/etc/redis6.conf
+    ports:
+      - "8005:8005"
+
+  redis-cluster-entry:
+    image: redis
+    network_mode: "host"
+    command: redis-cli --cluster create 127.0.0.1:8000 127.0.0.1:8001 127.0.0.1:8002 127.0.0.1:8003 127.0.0.1:8004 127.0.0.1:8005 --cluster-replicas 1
+    depends_on:
+      - redis-cluster-8000
+      - redis-cluster-8001
+      - redis-cluster-8002
+      - redis-cluster-8003
+      - redis-cluster-8004
+      - redis-cluster-8005
